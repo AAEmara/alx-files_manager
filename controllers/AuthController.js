@@ -47,7 +47,7 @@ export default class AuthController {
       await redisClient.del(`auth_${token}`);
       return res.status(204).send();
     } catch (error) {
-      res.status(401).json({ error: 'Unauthorized' });
+      return res.status(401).json({ error: 'Unauthorized' });
     }
   }
 }
