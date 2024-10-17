@@ -14,12 +14,9 @@ class RedisClient {
       this.isConnected = true;
     });
 
-    this.getAsync = promisify(this.redisClient.get)
-      .bind(this.redisClient);
-    this.setAsync = promisify(this.redisClient.set)
-      .bind(this.redisClient);
-    this.delAsync = promisify(this.redisClient.del)
-      .bind(this.redisClient);
+    this.getAsync = promisify(this.redisClient.get).bind(this.redisClient);
+    this.setAsync = promisify(this.redisClient.set).bind(this.redisClient);
+    this.delAsync = promisify(this.redisClient.del).bind(this.redisClient);
   }
 
   isAlive() {
@@ -31,11 +28,11 @@ class RedisClient {
   }
 
   async set(key, value, duration) {
-    await this.setAsync(key, value, 'EX', duration);
+    return this.setAsync(key, value, 'EX', duration);
   }
 
   async del(key) {
-    await this.delAsync(key);
+    return this.delAsync(key);
   }
 }
 
