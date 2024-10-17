@@ -41,10 +41,14 @@ export default class UserController {
       if (!userId) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
+
       const user = await dbClient.db.collection('users')
         .findOne({ _id: new mongodb.ObjectId(userId) });
-      const { _id, email } = user;
+      if (!user) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
 
+      const { _id, email } = user;
       return res.status(200).json({ id: _id, email });
     } catch (error) {
       return res.status(401).json({ error: 'Unauthorized' });
