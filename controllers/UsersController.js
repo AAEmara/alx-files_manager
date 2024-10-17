@@ -47,7 +47,7 @@ export default class UserController {
 
       return res.status(200).json({ id: _id, email });
     } catch (error) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized' });
     }
   }
 }
