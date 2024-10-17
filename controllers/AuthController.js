@@ -28,7 +28,7 @@ export default class AuthController {
 
       return res.status(200).json({ token });
     } catch (error) {
-      res.status(401).json({ error: 'Unauthorized' });
+      return res.status(401).json({ error: 'Unauthorized' });
     }
   }
 
